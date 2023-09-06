@@ -1,4 +1,5 @@
-import styled from 'styled-components';
+import { Link } from "react-router-dom";
+import styled from "styled-components";
 
 function Main() {
 	return (
@@ -13,9 +14,9 @@ function Main() {
 					<Login.Text>비밀번호</Login.Text>
 					<Login.Input></Login.Input>
 				</Login.InputBox>
-				<Login.Button>로그인</Login.Button>
-				<Login.RegisterText>아직 회원이 아니신가요?</Login.RegisterText>
+				<Login.Button to="/home">로그인</Login.Button>
 			</Login.Box>
+			<Login.RegisterText>아직 회원이 아니신가요?</Login.RegisterText>
 		</Content>
 	);
 }
@@ -39,15 +40,17 @@ const Logo = styled.p`
 const Login = {
 	Box: styled.div`
 		width: 400px;
-		height: 500px;
+		height: 200px;
 		display: flex;
 		flex-direction: column;
 		align-items: center;
 		justify-content: center;
-		gap: 24px;
+		gap: 36px;
+		margin-top: 100px;
+		margin-bottom: 20px;
 	`,
 	InputBox: styled.div`
-		width: 300px;
+		width: 350px;
 		display: flex;
 		align-items: center;
 		justify-content: space-between;
@@ -62,11 +65,22 @@ const Login = {
 	`,
 	Input: styled.input`
 		padding: 10px;
+		background-color: #d9d9d9;
+		border: none;
 	`,
-	Button: styled.div`
-		width: 300px;
-		height: 30px;
-		background-color: aliceblue;
+	Button: styled(Link)`
+		width: 100%;
+		height: 50px;
+		background-color: #4489c5;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		color: white;
+		font-size: 24px;
+		font-style: normal;
+		font-weight: 400;
+		cursor: pointer;
+		text-decoration: none;
 	`,
 	RegisterText: styled.p`
 		color: #000;
@@ -75,5 +89,8 @@ const Login = {
 		font-style: normal;
 		font-weight: 400;
 		line-height: normal;
+		cursor: pointer;
+		width: 400px;
+		text-align: right;
 	`,
 };

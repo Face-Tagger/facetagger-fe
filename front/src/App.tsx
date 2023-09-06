@@ -1,10 +1,16 @@
-import { styled } from 'styled-components';
-import Main from './pages/Main';
-
+import { styled } from "styled-components";
+import Main from "./pages/Main";
+import Home from "./pages/Home";
+import { Routes, Route, BrowserRouter } from "react-router-dom";
 function App() {
 	return (
 		<Content>
-			<Main />
+			<BrowserRouter>
+				<Routes>
+					<Route path="/" element={<Main />}></Route>
+					<Route path="/home" element={<Home />}></Route>
+				</Routes>
+			</BrowserRouter>
 		</Content>
 	);
 }
