@@ -19,11 +19,11 @@ FaceTagger-FE is a web-based frontend sample designed to demonstrate the functio
 
 ## Getting Started
 
-Experience the power of FaceTagger with this frontend sample by following the steps below:
+Experience the FaceTagger with this frontend sample by following the steps below:
 
 1. **Clone the Repository**:
    ```bash
-   git clone https://github.com/yourusername/facetagger-fe.git
+   git clone https://github.com/face-tagger/facetagger-fe.git
    ```
 
 2. **Enter the Project Directory**:
@@ -45,7 +45,7 @@ Experience the power of FaceTagger with this frontend sample by following the st
 
 ## Contributing
 
-Your contributions can make this sample even better! Feel free to fork, tweak, and submit a pull request. If you have substantial changes in mind, please open an [issue]('https://github.com/yourusername/facetagger-fe/issues/new') to discuss them.
+Feel free to fork, tweak, and submit a pull request. If you have substantial changes in mind, please open an [issue]('https://github.com/face-tagger/facetagger-fe/issues/new') to discuss them.
 
 <br>
 
