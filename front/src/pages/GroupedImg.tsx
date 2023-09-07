@@ -1,8 +1,9 @@
-import React, { useState, ChangeEvent, FormEvent } from 'react';
+import React, { useState, ChangeEvent, FormEvent, useEffect } from 'react';
 import Header from '../components/Header';
 import styled from 'styled-components';
-import shortid from 'https://cdn.skypack.dev/shortid@2.2.16';
-import { useNavigate } from 'react-router';
+import data from '../mocks/data';
+import data2 from '../mocks/data2';
+import { useParams } from 'react-router';
 
 interface FileData {
 	id: string;
@@ -16,70 +17,14 @@ interface FileData {
 function GroupedImg() {
 	const [room, setRoom] = useState<number[]>([]);
 	const [isAddClick, setIsAddClick] = useState<boolean>(false);
-	const [selectedfile, SetSelectedFile] = useState<FileData[]>([]);
-	const [Files, SetFiles] = useState<FileData[]>([]);
-	const navigate = useNavigate();
+	const [selectedfile, setSelectedFile] = useState<FileData[]>([]);
+	const [Files, setFiles] = useState<FileData[]>([]);
 
-	const filesizes = (bytes: number, decimals = 2): string => {
-		if (bytes === 0) return '0 Bytes';
-		const k = 1024;
-		const dm = decimals < 0 ? 0 : decimals;
-		const sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];
-		const i = Math.floor(Math.log(bytes) / Math.log(k));
-		return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + ' ' + sizes[i];
-	};
-
-	const InputChange = (e: ChangeEvent<HTMLInputElement>) => {
-		if (!e.target.files) return;
-
-		const files = Array.from(e.target.files);
-		const images: File[] = [];
-
-		files.forEach((file) => {
-			images.push(file);
-			const reader = new FileReader();
-			reader.onloadend = () => {
-				SetSelectedFile((preValue) => [
-					...preValue,
-					{
-						id: shortid.generate(),
-						filename: file.name,
-						filetype: file.type,
-						fileimage: reader.result as string,
-						datetime: file.lastModified.toLocaleString('en-IN'),
-						filesize: filesizes(file.size),
-					},
-				]);
-			};
-			reader.readAsDataURL(file);
-		});
-	};
-
-	const DeleteSelectFile = (id: string): void => {
-		if (window.confirm('삭제하시겠습니까?')) {
-			const result = selectedfile.filter((data) => data.id !== id);
-			SetSelectedFile(result);
-		}
-	};
-
-	const FileUploadSubmit = (e: FormEvent<HTMLFormElement>): void => {
-		e.preventDefault();
-
-		if (selectedfile.length > 0) {
-			SetFiles((preValue) => [...preValue, ...selectedfile]);
-			SetSelectedFile([]);
-			setIsAddClick(false);
-		} else {
-			alert('Please select file');
-		}
-	};
-
-	const DeleteFile = (id: string): void => {
-		if (window.confirm('정말 삭제하시겠습니까?')) {
-			const result = Files.filter((data) => data.id !== id);
-			SetFiles(result);
-		}
-	};
+	const { groupNumber } = useParams();
+	useEffect(() => {
+		if (groupNumber === '1') setFiles(data);
+		else if (groupNumber === '2') setFiles(data2);
+	}, []);
 	return (
 		<>
 			<Header />
@@ -94,7 +39,7 @@ function GroupedImg() {
 									{filename.match(/.(jpg|jpeg|png|gif|svg)$/i) ? (
 										<FileImage>
 											{' '}
-											<FileImageImage src={fileimage} alt="" />
+											<FileImageImage src={`/${fileimage}`} alt="" />
 										</FileImage>
 									) : (
 										<FileImage />

@@ -4,6 +4,7 @@ import Home from './pages/Home';
 import { Routes, Route, BrowserRouter } from 'react-router-dom';
 import Group from './pages/Group';
 import Grouped from './pages/Grouped';
+import GroupedImg from './pages/GroupedImg';
 function App() {
 	return (
 		<Content>
@@ -13,6 +14,7 @@ function App() {
 					<Route path="/home" element={<Home />}></Route>
 					<Route path="/group/:groupNumber" element={<Group />} />
 					<Route path="/grouped" element={<Grouped />} />
+					<Route path="/groupedImg/:groupNumber" element={<GroupedImg />} />
 				</Routes>
 			</BrowserRouter>
 		</Content>

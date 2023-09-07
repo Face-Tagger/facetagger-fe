@@ -2,9 +2,11 @@ import React, { useEffect, useState } from 'react';
 import Header from '../components/Header';
 import styled from 'styled-components';
 import spinner from '../assets/spinner.svg';
+import { useNavigate } from 'react-router';
 function Grouped() {
 	const [room, setRoom] = useState<number[]>([]);
 	const [isAddClick, setIsAddClick] = useState<boolean>(true);
+	const navigate = useNavigate();
 	useEffect(() => {
 		if (isAddClick) {
 			const timer = setTimeout(() => {
@@ -15,6 +17,12 @@ function Grouped() {
 			};
 		}
 	}, []);
+	const handleClickFolder1 = () => {
+		navigate('/GroupedImg/1');
+	};
+	const handleClickFolder2 = () => {
+		navigate('/GroupedImg/2');
+	};
 	return (
 		<>
 			<Header />
@@ -26,18 +34,18 @@ function Grouped() {
 			) : (
 				<Content>
 					<BoxWrapper>
-						<FolderWrapper>
-							<FolderBox></FolderBox>
+						<FolderWrapper1 onClick={() => handleClickFolder1()}>
+							<FolderBox1></FolderBox1>
 							<FolderName>분류1</FolderName>
-						</FolderWrapper>
-						<FolderWrapper>
-							<FolderBox></FolderBox>
+						</FolderWrapper1>
+						<FolderWrapper1 onClick={() => handleClickFolder2()}>
+							<FolderBox2></FolderBox2>
 							<FolderName>분류2</FolderName>
-						</FolderWrapper>
-						<FolderWrapper>
-							<FolderBox></FolderBox>
+						</FolderWrapper1>
+						<FolderWrapper1>
+							<FolderBox3></FolderBox3>
 							<FolderName>분류3</FolderName>
-						</FolderWrapper>
+						</FolderWrapper1>
 					</BoxWrapper>
 				</Content>
 			)}
@@ -98,15 +106,33 @@ const BoxWrapper = styled.div`
 	display: flex;
 	gap: 36px;
 `;
-const FolderBox = styled.div`
+const FolderBox1 = styled.div`
 	width: 100px;
 	height: 100px;
-	background-color: rgba(230, 159, 17);
 	box-shadow: 5px 5px 5px 5px gray;
+	background-size: contain;
+	background-image: url('/sung.png');
+	cursor: pointer;
+`;
+
+const FolderBox2 = styled.div`
+	width: 100px;
+	height: 100px;
+	box-shadow: 5px 5px 5px 5px gray;
+	background-size: contain;
+	background-image: url('/jin.png');
+	cursor: pointer;
+`;
+const FolderBox3 = styled.div`
+	width: 100px;
+	height: 100px;
+	box-shadow: 5px 5px 5px 5px gray;
+	background-size: contain;
+	background-image: url('/jong.png');
 	cursor: pointer;
 `;
 const FolderName = styled.p``;
-const FolderWrapper = styled.div`
+const FolderWrapper1 = styled.div`
 	display: flex;
 	flex-direction: column;
 	align-items: center;
