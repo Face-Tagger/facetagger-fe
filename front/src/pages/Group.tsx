@@ -1,7 +1,7 @@
-import React, { useState, ChangeEvent, FormEvent } from "react";
-import Header from "../components/Header";
-import styled from "styled-components";
-import shortid from "https://cdn.skypack.dev/shortid@2.2.16";
+import React, { useState, ChangeEvent, FormEvent } from 'react';
+import Header from '../components/Header';
+import styled from 'styled-components';
+import shortid from 'https://cdn.skypack.dev/shortid@2.2.16';
 
 interface FileData {
 	id: string;
@@ -19,12 +19,12 @@ function Group() {
 	const [Files, SetFiles] = useState<FileData[]>([]);
 
 	const filesizes = (bytes: number, decimals = 2): string => {
-		if (bytes === 0) return "0 Bytes";
+		if (bytes === 0) return '0 Bytes';
 		const k = 1024;
 		const dm = decimals < 0 ? 0 : decimals;
-		const sizes = ["Bytes", "KB", "MB", "GB", "TB", "PB", "EB", "ZB", "YB"];
+		const sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];
 		const i = Math.floor(Math.log(bytes) / Math.log(k));
-		return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + " " + sizes[i];
+		return parseFloat((bytes / Math.pow(k, i)).toFixed(dm)) + ' ' + sizes[i];
 	};
 
 	const InputChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -44,7 +44,7 @@ function Group() {
 						filename: file.name,
 						filetype: file.type,
 						fileimage: reader.result as string,
-						datetime: file.lastModified.toLocaleString("en-IN"),
+						datetime: file.lastModified.toLocaleString('en-IN'),
 						filesize: filesizes(file.size),
 					},
 				]);
@@ -54,7 +54,7 @@ function Group() {
 	};
 
 	const DeleteSelectFile = (id: string): void => {
-		if (window.confirm("삭제하시겠습니까?")) {
+		if (window.confirm('삭제하시겠습니까?')) {
 			const result = selectedfile.filter((data) => data.id !== id);
 			SetSelectedFile(result);
 		}
@@ -67,12 +67,12 @@ function Group() {
 			SetFiles((preValue) => [...preValue, ...selectedfile]);
 			SetSelectedFile([]);
 		} else {
-			alert("Please select file");
+			alert('Please select file');
 		}
 	};
 
 	const DeleteFile = (id: string): void => {
-		if (window.confirm("정말 삭제하시겠습니까?")) {
+		if (window.confirm('정말 삭제하시겠습니까?')) {
 			const result = Files.filter((data) => data.id !== id);
 			SetFiles(result);
 		}
@@ -89,7 +89,7 @@ function Group() {
 							<FileAtcBox key={index}>
 								{filename.match(/.(jpg|jpeg|png|gif|svg)$/i) ? (
 									<FileImage>
-										{" "}
+										{' '}
 										<FileImageImage src={fileimage} alt="" />
 									</FileImage>
 								) : (
@@ -134,7 +134,7 @@ function Group() {
 												multiple
 											/>
 											<Span>
-												드래그 앤 드랍하거나{" "}
+												드래그 앤 드랍하거나{' '}
 												<FileLink>파일을 골라주세요</FileLink>
 											</Span>
 										</FileUploadBox>
@@ -153,7 +153,7 @@ function Group() {
 												<FileAtcBox key={id}>
 													{filename.match(/.(jpg|jpeg|png|gif|svg)$/i) ? (
 														<FileImage>
-															{" "}
+															{' '}
 															<FileImageImage src={fileimage} alt="" />
 														</FileImage>
 													) : (
@@ -163,7 +163,6 @@ function Group() {
 														<>{filename}</>
 														<>
 															<TextSpan>Size : {filesize}</TextSpan>
-															<TextSpan>Modified Time : {datetime}</TextSpan>
 														</>
 														<FileActions>
 															<FileActionBtn

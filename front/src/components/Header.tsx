@@ -1,12 +1,12 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import styled from "styled-components";
+import React from 'react';
+import { Link } from 'react-router-dom';
+import styled from 'styled-components';
 
 function Header() {
-	const userName = "아무개";
+	const userName = '배성준';
 	return (
 		<Content.Wrapper>
-			<Content.Logo>Gachi</Content.Logo>
+			<Content.Logo>Poker Face</Content.Logo>
 			<Content.UserInfo>
 				<Content.UserWelcome>{userName}님 반갑습니다</Content.UserWelcome>
 				<Content.Logout to="/">로그아웃</Content.Logout>
