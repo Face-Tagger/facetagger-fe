@@ -13,7 +13,7 @@ interface FileData {
 	filesize: string;
 }
 
-function Group() {
+function GroupedImg() {
 	const [room, setRoom] = useState<number[]>([]);
 	const [isAddClick, setIsAddClick] = useState<boolean>(false);
 	const [selectedfile, SetSelectedFile] = useState<FileData[]>([]);
@@ -80,9 +80,6 @@ function Group() {
 			SetFiles(result);
 		}
 	};
-	const handleClassify = () => {
-		navigate('/grouped');
-	};
 	return (
 		<>
 			<Header />
@@ -120,11 +117,6 @@ function Group() {
 							);
 						})}
 					</Photo.Wrapper>
-					<SubmitButton>
-						<SubmitButtonP onClick={() => handleClassify()}>
-							분류하기
-						</SubmitButtonP>
-					</SubmitButton>
 				</>
 			) : (
 				<Photo.Message>사진이 없습니다.</Photo.Message>
@@ -209,7 +201,7 @@ function Group() {
 	);
 }
 
-export default Group;
+export default GroupedImg;
 const Photo = {
 	Wrapper: styled.div`
 		width: 100%;
