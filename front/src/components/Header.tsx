@@ -6,7 +6,7 @@ function Header() {
 	const userName = "아무개";
 	return (
 		<Content.Wrapper>
-			<Content.Logo>Poker Face</Content.Logo>
+			<Content.Logo>Gachi</Content.Logo>
 			<Content.UserInfo>
 				<Content.UserWelcome>{userName}님 반갑습니다</Content.UserWelcome>
 				<Content.Logout to="/">로그아웃</Content.Logout>

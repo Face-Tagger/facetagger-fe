@@ -80,10 +80,38 @@ function Group() {
 	return (
 		<>
 			<Header />
-			{room.length === 0 ? (
-				<Photo.Message>사진이 없습니다.</Photo.Message>
+			{Files.length > 0 ? (
+				<Photo.Wrapper>
+					{Files.map((data, index) => {
+						const { id, filename, filetype, fileimage, datetime, filesize } =
+							data;
+						return (
+							<FileAtcBox key={index}>
+								{filename.match(/.(jpg|jpeg|png|gif|svg)$/i) ? (
+									<FileImage>
+										{" "}
+										<FileImageImage src={fileimage} alt="" />
+									</FileImage>
+								) : (
+									<FileImage />
+								)}
+								<FileDetail>
+									<>{filename}</>
+									<>
+										<TextSpan>Size : {filesize}</TextSpan>
+									</>
+									<FileActions>
+										<FileActionBtn onClick={() => DeleteFile(id)}>
+											Delete
+										</FileActionBtn>
+									</FileActions>
+								</FileDetail>
+							</FileAtcBox>
+						);
+					})}
+				</Photo.Wrapper>
 			) : (
-				<Photo.Wrapper></Photo.Wrapper>
+				<Photo.Message>사진이 없습니다.</Photo.Message>
 			)}
 			<Photo.Add onClick={() => setIsAddClick(!isAddClick)}>+</Photo.Add>
 			{isAddClick && (
@@ -154,53 +182,6 @@ function Group() {
 										<FormSubmit type="submit">업로드</FormSubmit>
 									</>
 								</Form>
-								{Files.length > 0 ? (
-									<>
-										{Files.map((data, index) => {
-											const {
-												id,
-												filename,
-												filetype,
-												fileimage,
-												datetime,
-												filesize,
-											} = data;
-											return (
-												<FileAtcBox key={index}>
-													{filename.match(/.(jpg|jpeg|png|gif|svg)$/i) ? (
-														<FileImage>
-															{" "}
-															<FileImageImage src={fileimage} alt="" />
-														</FileImage>
-													) : (
-														<FileImage />
-													)}
-													<FileDetail>
-														<>{filename}</>
-														<>
-															<TextSpan>Size : {filesize}</TextSpan>
-															<TextSpan>Modified Time : {datetime}</TextSpan>
-														</>
-														<FileActions>
-															<FileActionBtn onClick={() => DeleteFile(id)}>
-																Delete
-															</FileActionBtn>
-															<A
-																href={fileimage}
-																className="file-action-btn"
-																download={filename}
-															>
-																Download
-															</A>
-														</FileActions>
-													</FileDetail>
-												</FileAtcBox>
-											);
-										})}
-									</>
-								) : (
-									""
-								)}
 							</CardBody>
 						</Card>
 					</Photo.AddModalContent>
