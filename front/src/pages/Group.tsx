@@ -347,6 +347,8 @@ const Card = styled.div`
 	border: none;
 `;
 const CardBody = styled.div`
+	height: 550px;
+	overflow: scroll;
 	padding: 30px;
 `;
 
