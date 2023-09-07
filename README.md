@@ -28,7 +28,7 @@ Experience the power of FaceTagger with this frontend sample by following the st
 
 2. **Enter the Project Directory**:
    ```bash
-   cd facetagger-fe
+   cd facetagger-fe/front
    ```
 
 3. **Set up Dependencies**:
