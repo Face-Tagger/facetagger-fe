@@ -66,6 +66,7 @@ function Group() {
 		if (selectedfile.length > 0) {
 			SetFiles((preValue) => [...preValue, ...selectedfile]);
 			SetSelectedFile([]);
+			setIsAddClick(false);
 		} else {
 			alert('Please select file');
 		}
@@ -81,35 +82,43 @@ function Group() {
 		<>
 			<Header />
 			{Files.length > 0 ? (
-				<Photo.Wrapper>
-					{Files.map((data, index) => {
-						const { id, filename, filetype, fileimage, datetime, filesize } =
-							data;
-						return (
-							<FileAtcBox key={index}>
-								{filename.match(/.(jpg|jpeg|png|gif|svg)$/i) ? (
-									<FileImage>
-										{' '}
-										<FileImageImage src={fileimage} alt="" />
-									</FileImage>
-								) : (
-									<FileImage />
-								)}
-								<FileDetail>
-									<>{filename}</>
-									<>
-										<TextSpan>Size : {filesize}</TextSpan>
-									</>
-									<FileActions>
-										<FileActionBtn onClick={() => DeleteFile(id)}>
-											Delete
-										</FileActionBtn>
-									</FileActions>
-								</FileDetail>
-							</FileAtcBox>
-						);
-					})}
-				</Photo.Wrapper>
+				<>
+					<Photo.Wrapper>
+						{Files.map((data, index) => {
+							const { id, filename, filetype, fileimage, datetime, filesize } =
+								data;
+							return (
+								<FileAtcBox key={index}>
+									{filename.match(/.(jpg|jpeg|png|gif|svg)$/i) ? (
+										<FileImage>
+											{' '}
+											<FileImageImage src={fileimage} alt="" />
+										</FileImage>
+									) : (
+										<FileImage />
+									)}
+									<FileDetail>
+										<>
+											{filename.slice(-7)}
+											<br />
+										</>
+										<>
+											<TextSpan>Size : {filesize}</TextSpan>
+										</>
+										<FileActions>
+											<FileActionBtn onClick={() => DeleteFile(id)}>
+												Delete
+											</FileActionBtn>
+										</FileActions>
+									</FileDetail>
+								</FileAtcBox>
+							);
+						})}
+					</Photo.Wrapper>
+					<SubmitButton>
+						<SubmitButtonP>분류하기</SubmitButtonP>
+					</SubmitButton>
+				</>
 			) : (
 				<Photo.Message>사진이 없습니다.</Photo.Message>
 			)}
@@ -160,7 +169,10 @@ function Group() {
 														<></>
 													)}
 													<FileDetail>
-														<>{filename}</>
+														<>
+															{filename.slice(-7)}
+															<br />
+														</>
 														<>
 															<TextSpan>Size : {filesize}</TextSpan>
 														</>
@@ -194,7 +206,8 @@ export default Group;
 const Photo = {
 	Wrapper: styled.div`
 		width: 100%;
-		height: 100%;
+		display: flex;
+		flex-wrap: wrap;
 	`,
 	Message: styled.p`
 		width: 100%;
@@ -271,6 +284,7 @@ const FileAtcBox = styled.div`
 	display: flex;
 	align-items: center;
 	margin-bottom: 15px;
+	width: 260px;
 `;
 
 const FileImage = styled.div`
@@ -353,3 +367,20 @@ const CardBody = styled.div`
 `;
 
 const Span = styled.span``;
+
+const SubmitButton = styled.div`
+	width: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+`;
+
+const SubmitButtonP = styled.div`
+	text-align: center;
+	width: 100px;
+	color: white;
+	background-color: #007bff;
+	padding: 20px;
+	border-radius: 20px;
+	cursor: pointer;
+`;
